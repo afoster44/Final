@@ -35,7 +35,8 @@ namespace final_server.Controllers
             }
         }
 
-        [HttpGet("{id}")]  // NOTE '{}' signifies a var parameter
+        [HttpGet("{id}")]
+        [Authorize]
         public ActionResult<Vault> Get(int id)
         {
             try
@@ -48,14 +49,12 @@ namespace final_server.Controllers
             }
         }
 
-
         [HttpPost]
         [Authorize]
         public async Task<ActionResult<Vault>> Create([FromBody] Vault newVault)
         {
             try
             {
-                // NOTE HttpContext == 'req'
                 Profile userInfo = await HttpContext.GetUserInfoAsync<Profile>();
                 newVault.CreatorId = userInfo.Id;
                 newVault.Creator = userInfo;

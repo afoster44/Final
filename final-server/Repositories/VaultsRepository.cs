@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -75,6 +76,21 @@ namespace final_server.Repositories
         {
             string sql = "DELETE FROM vaults WHERE id = @id LIMIT 1;";
             _db.Execute(sql, new { id });
+        }
+
+        internal IEnumerable<Vault> GetVaultsByProfileId(string id)
+        {
+            string sql = @"SELECT
+            v.*,
+            p.*
+            FROM vaults v
+            JOIN profiles p ON v.creatorId = p.id
+            WHERE v.creatorId = @id;";
+            return _db.Query<Vault, Profile, Vault>(sql, (vault, profile) =>
+            {
+                vault.Creator = profile;
+                return vault;
+            }, new { id }, splitOn: "id");
         }
     }
 }

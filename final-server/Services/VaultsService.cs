@@ -59,5 +59,11 @@ namespace final_server.Services
             _repo.Delete(id);
             return "nice delete";
         }
+
+
+        internal IEnumerable<Vault> GetVaultsByProfileId(string id)
+        {
+            return _repo.GetVaultsByProfileId(id);
+        }
     }
 }

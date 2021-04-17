@@ -50,11 +50,11 @@ namespace final_server.Repositories
         internal Keep Create(Keep newKeep)
         {
             string sql = @"
-      INSERT INTO keeps 
-      (description, name, creatorId, img, views, shares, keeps) 
-      VALUES 
-      (@Description, @Name, @CreatorId, @Img, 0, 0, 0);
-      SELECT LAST_INSERT_ID();";
+            INSERT INTO keeps 
+            (description, name, creatorId, img, views, shares, keeps) 
+            VALUES 
+            (@Description, @Name, @CreatorId, @Img, 0, 0, 0);
+            SELECT LAST_INSERT_ID();";
             int id = _db.ExecuteScalar<int>(sql, newKeep);
             newKeep.Id = id;
             return newKeep;
@@ -63,15 +63,15 @@ namespace final_server.Repositories
         internal Keep Edit(Keep updated)
         {
             string sql = @"
-        UPDATE keeps
-        SET
-         description = @Description,
-         name = @Name,
-         img = @Img, 
-         views = @Views,
-         shares = @Shares,
-         keeps = @Keeps
-        WHERE id = @Id;";
+            UPDATE keeps
+            SET
+            description = @Description,
+            name = @Name,
+            img = @Img, 
+            views = @Views,
+            shares = @Shares,
+            keeps = @Keeps
+            WHERE id = @Id;";
             _db.Execute(sql, updated);
             return updated;
         }

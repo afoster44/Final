@@ -11,11 +11,13 @@ namespace final_server.Controllers
     {
         private readonly ProfilesService _serv;
         private readonly KeepsService _kserv;
+        private readonly VaultsService _vserv;
 
-        public ProfilesController(ProfilesService serv, KeepsService kserv)
+        public ProfilesController(ProfilesService serv, KeepsService kserv, VaultsService vserv)
         {
             _serv = serv;
             _kserv = kserv;
+            _vserv = vserv;
         }
 
         [HttpGet("{id}")]
@@ -37,6 +39,19 @@ namespace final_server.Controllers
             try
             {
                 return Ok(_kserv.GetKeepsByProfileId(id));
+            }
+            catch (System.Exception err)
+            {
+                return BadRequest(err.Message);
+            }
+        }
+
+        [HttpGet("{id}/vaults")]
+        public ActionResult<IEnumerable<Vault>> GetVaultsByProfileId(string id)
+        {
+            try
+            {
+                return Ok(_vserv.GetVaultsByProfileId(id));
             }
             catch (System.Exception err)
             {
