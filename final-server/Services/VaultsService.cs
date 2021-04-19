@@ -29,6 +29,20 @@ namespace final_server.Services
             return data;
         }
 
+        internal Vault GetById(int id, string userId)
+        {
+            var data = _repo.GetById(id);
+            if (data == null)
+            {
+                throw new Exception("Invalid Id");
+            }
+            else if (data.IsPrivate == true && data.CreatorId != userId)
+            {
+                throw new Exception("you are not the creator of this vault");
+            }
+            return data;
+        }
+
         internal Vault Create(Vault newVault)
         {
             return _repo.Create(newVault);

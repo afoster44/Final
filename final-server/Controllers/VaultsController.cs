@@ -36,12 +36,12 @@ namespace final_server.Controllers
         }
 
         [HttpGet("{id}")]
-        [Authorize]
-        public ActionResult<Vault> Get(int id)
+        public async Task<ActionResult<Vault>> GetAsync(int id)
         {
             try
             {
-                return Ok(_vserv.GetById(id));
+                Profile userInfo = await HttpContext.GetUserInfoAsync<Profile>();
+                return Ok(_vserv.GetById(id, userInfo.Id));
             }
             catch (Exception e)
             {
