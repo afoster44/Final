@@ -22,8 +22,11 @@
       <VaultComponent v-for="vault in state.profileVaults" :key="vault.id" :vault="vault" />
     </div>
     <div class="row">
-      <div class="col-12">
+      <div class="col-1 mr-4">
         <h1>Keeps:</h1>
+      </div>
+      <div class="col-9">
+        <CreateKeepModal />
       </div>
     </div>
     <div class="row">

@@ -19,21 +19,48 @@
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="exampleModalLabel">
-              Modal title
+              Make a new Vault please :P
             </h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
           <div class="modal-body">
-            ...
+            <form @submit.prevent="createVault">
+              <div class="form-group">
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Name"
+                  name="name"
+                  id="name"
+                  aria-describedby="helpId"
+                  v-model="state.vault.name"
+                />
+              </div>
+              <div class="form-group">
+                <input
+                  type="text"
+                  class="form-control m-1"
+                  placeholder="Description"
+                  name="description"
+                  id="description"
+                  aria-describedby="helpId"
+                  v-model="state.vault.description"
+                >
+                <div class="form-check">
+                  <input type="checkbox" class="form-check-input" name="isPrivate" id="isPrivate" v-model="state.vault.isPrivate">
+                  <label class="form-check-label">Would you like the to be a private Vault?</label>
+                </div>
+              </div>
+              <button type="submit" class="btn btn-primary">
+                Create Vault
+              </button>
+            </form>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">
               Close
-            </button>
-            <button type="button" class="btn btn-primary">
-              Save changes
             </button>
           </div>
         </div>
@@ -43,10 +70,23 @@
 </template>
 
 <script>
+import { reactive } from '@vue/reactivity'
+import { vaultService } from '../services/VaultService'
+import { useRoute } from 'vue-router'
+
 export default {
   name: 'CreateVaultModal',
   setup() {
-    return {}
+    const route = useRoute()
+    const state = reactive({
+      vault: {}
+    })
+    return {
+      state,
+      createVault() {
+        vaultService.createVault(state.vault, route.params.id)
+      }
+    }
   },
   components: {}
 }

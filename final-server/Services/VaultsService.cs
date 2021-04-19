@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using final_server.Models;
 using final_server.Repositories;
 
@@ -26,22 +27,26 @@ namespace final_server.Services
             {
                 throw new Exception("Invalid Id");
             }
+            else if (data.IsPrivate == true)
+            {
+                throw new Exception("This is a private vault");
+            }
             return data;
         }
 
-        internal Vault GetById(int id, string userId)
-        {
-            var data = _repo.GetById(id);
-            if (data == null)
-            {
-                throw new Exception("Invalid Id");
-            }
-            else if (data.IsPrivate == true && data.CreatorId != userId)
-            {
-                throw new Exception("you are not the creator of this vault");
-            }
-            return data;
-        }
+        // internal Vault GetById(int id, string userId)
+        // {
+        //     var data = _repo.GetById(id);
+        //     if (data == null)
+        //     {
+        //         throw new Exception("Invalid Id");
+        //     }
+        //     // else if (data.IsPrivate == true && data.CreatorId != userId)
+        //     // {
+        //     //     throw new Exception("you are not the creator of this vault");
+        //     // }
+        //     return data;
+        // }
 
         internal Vault Create(Vault newVault)
         {
@@ -77,7 +82,8 @@ namespace final_server.Services
 
         internal IEnumerable<Vault> GetVaultsByProfileId(string id)
         {
-            return _repo.GetVaultsByProfileId(id);
+            IEnumerable<Vault> vaults = _repo.GetVaultsByProfileId(id);
+            return vaults.ToList().FindAll(r => r.IsPrivate == false);
         }
     }
 }

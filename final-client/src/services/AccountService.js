@@ -11,6 +11,11 @@ class AccountService {
       logger.error('HAVE YOU STARTED YOUR SERVER YET???', err)
     }
   }
+
+  async getKeeps() {
+    const res = await api.get('/account/keeps')
+    console.log(res)
+  }
 }
 
 export const accountService = new AccountService()

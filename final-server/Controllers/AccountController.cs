@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using CodeWorks.Auth0Provider;
 using final_server.Models;
@@ -14,10 +15,12 @@ namespace final_server.Controllers
     public class AccountController : ControllerBase
     {
         private readonly ProfilesService _psService;
+        private readonly VaultsService _vserv;
 
-        public AccountController(ProfilesService psService)
+        public AccountController(ProfilesService psService, VaultsService vserv)
         {
             _psService = psService;
+            _vserv = vserv;
         }
 
         [HttpGet]

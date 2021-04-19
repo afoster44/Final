@@ -36,12 +36,11 @@ namespace final_server.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Vault>> GetAsync(int id)
+        public ActionResult<Vault> GetById(int id)
         {
             try
             {
-                Profile userInfo = await HttpContext.GetUserInfoAsync<Profile>();
-                return Ok(_vserv.GetById(id, userInfo.Id));
+                return Ok(_vserv.GetById(id));
             }
             catch (Exception e)
             {
@@ -100,11 +99,17 @@ namespace final_server.Controllers
         }
 
         [HttpGet("{id}/keeps")]
-        [Authorize]
-        public ActionResult<IEnumerable<VaultKeepView>> GetKeepsByVaultId(int id)
+        public async Task<ActionResult<IEnumerable<VaultKeepView>>> GetKeepsByVaultIdAsync(int id)
         {
             try
             {
+                // Profile userInfo = await HttpContext.GetUserInfoAsync<Profile>();
+                // if (userInfo == null)
+                // {
+                //     userInfo.Id = "No user";
+                //     //note figure it out
+                // }
+                // var userId = userInfo.Id;
                 return Ok(_kserv.GetKeepsByVaultId(id));
             }
             catch (System.Exception err)

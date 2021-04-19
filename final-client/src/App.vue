@@ -4,13 +4,13 @@
   </header>
   <main>
     <router-view />
-    <!-- <KeepDisplayModal /> -->
   </main>
   <footer>
     <div class="bg-dark text-light text-center p-4">
       Made with 💖 by CodeWorks
     </div>
   </footer>
+  <!-- <KeepDisplayModal /> -->
 </template>
 
 <script>

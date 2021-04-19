@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using final_server.Models;
 using final_server.Repositories;
 
@@ -8,10 +9,12 @@ namespace final_server.Services
     public class KeepsService
     {
         private readonly KeepsRepository _repo;
+        private readonly VaultsRepository _vrepo;
 
-        public KeepsService(KeepsRepository repo)
+        public KeepsService(KeepsRepository repo, VaultsRepository vrepo)
         {
             _repo = repo;
+            _vrepo = vrepo;
         }
 
         internal IEnumerable<Keep> GetAll()
@@ -61,7 +64,17 @@ namespace final_server.Services
 
         internal IEnumerable<VaultKeepView> GetKeepsByVaultId(int id)
         {
+            Vault vault = _vrepo.GetById(id);
+            if (vault.IsPrivate == true)
+            {
+                throw new Exception("invalid id");
+            }
+            // else if (vault.IsPrivate == true && vault.CreatorId != userId)
+            // {
+            //     throw new Exception("This is private and you are not the creator");
+            // }
             return _repo.GetKeepsByVaultId(id);
+
         }
 
         internal IEnumerable<Keep> GetKeepsByProfileId(string id)
