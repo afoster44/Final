@@ -16,6 +16,12 @@ class AccountService {
     const res = await api.get('/account/keeps')
     console.log(res)
   }
+
+  async getVaultsByAccount() {
+    const res = await api.get('/account/vaults')
+    console.log('got vaults by account id', res)
+    AppState.accountVaults = res.data
+  }
 }
 
 export const accountService = new AccountService()

@@ -6,9 +6,11 @@
           <h3>{{ vault.name }} <i class="fa fa-trash" aria-hidden="true" @click="deleteVault" v-if="state.account.id === vault.creatorId"></i></h3>
         </div>
       </div>
-      <div class="card-text">
-        {{ vault.description }}
-      </div>
+      <router-link :to="{name: 'VaultPage', params: {id: vault.id}}">
+        <div class="card-text">
+          {{ vault.description }}
+        </div>
+      </router-link>
     </div>
   </div>
 </template>
@@ -43,5 +45,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
+.card {
+  height: 100%;
+}
 
 </style>

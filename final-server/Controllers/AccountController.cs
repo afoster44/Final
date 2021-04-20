@@ -36,5 +36,20 @@ namespace final_server.Controllers
                 return BadRequest(err.Message);
             }
         }
+
+        [HttpGet("vaults")]
+        public async Task<ActionResult<Vault>> GetVaultsByAccountIdAsync()
+        {
+            try
+            {
+                Profile userInfo = await HttpContext.GetUserInfoAsync<Profile>();
+                return Ok(_vserv.GetVaultsByProfileId(userInfo.Id));
+            }
+            catch (System.Exception err)
+            {
+                return BadRequest(err.Message);
+            }
+
+        }
     }
 }

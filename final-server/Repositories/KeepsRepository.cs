@@ -33,7 +33,7 @@ namespace final_server.Repositories
 
         internal Keep GetById(int id)
         {
-            string sql = @" 
+            string sql = @" UPDATE keeps SET views = views + 1 WHERE id = @id;
       SELECT 
       keep.*,
       prof.*

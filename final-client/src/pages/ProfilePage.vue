@@ -29,7 +29,7 @@
         <CreateKeepModal />
       </div>
     </div>
-    <div class="row">
+    <div class="card-columns">
       <KeepComponent v-for="keep in state.profileKeeps" :key="keep.id" :keep="keep" />
     </div>
   </div>
@@ -63,5 +63,16 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.card-columns {
+  @media(max-width: 767px) {
+    column-count: 2;
+  }
+  @media(min-width: 768px) {
+    column-count: 3;
+  }
+  @media(min-width: 1200px) {
+    column-count: 4;
+  }
+}
 
 </style>
