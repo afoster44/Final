@@ -92,7 +92,10 @@ export default {
     return {
       state,
       async deleteKeep() {
-        await keepService.deleteKeep(state.keep.id)
+        const res = window.confirm('Are you sure you want to delete this keep?')
+        if (res) {
+          await keepService.deleteKeep(state.keep.id)
+        }
       }
     }
   },

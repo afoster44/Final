@@ -32,7 +32,10 @@ export default {
     return {
       state,
       async removeKeepFromVault() {
-        await vaultKeepService.removeKeepFromVault(props.vaultKeep.vaultKeepId, route.params.id)
+        const res = window.confirm('Are you sure you want to delete this Keep from your Vault?')
+        if (res) {
+          await vaultKeepService.removeKeepFromVault(props.vaultKeep.vaultKeepId, route.params.id)
+        }
       }
     }
   },
