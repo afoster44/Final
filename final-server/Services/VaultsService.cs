@@ -29,24 +29,24 @@ namespace final_server.Services
             }
             else if (data.IsPrivate == true)
             {
-                throw new Exception("This is a private vault");
+                throw new Exception("This vault is private and you are not the creator");
             }
             return data;
         }
 
-        // internal Vault GetById(int id, string userId)
-        // {
-        //     var data = _repo.GetById(id);
-        //     if (data == null)
-        //     {
-        //         throw new Exception("Invalid Id");
-        //     }
-        //     // else if (data.IsPrivate == true && data.CreatorId != userId)
-        //     // {
-        //     //     throw new Exception("you are not the creator of this vault");
-        //     // }
-        //     return data;
-        // }
+        internal Vault GetById(int id, string userId)
+        {
+            var data = _repo.GetById(id);
+            if (data == null)
+            {
+                throw new Exception("Invalid Id");
+            }
+            else if (data.IsPrivate == true && data.CreatorId != userId)
+            {
+                throw new Exception("you are not the creator of this vault");
+            }
+            return data;
+        }
 
         internal Vault Create(Vault newVault)
         {
@@ -84,6 +84,12 @@ namespace final_server.Services
         {
             IEnumerable<Vault> vaults = _repo.GetVaultsByProfileId(id);
             return vaults.ToList().FindAll(r => r.IsPrivate == false);
+        }
+
+        internal IEnumerable<Vault> GetVaultsByAccountId(string id)
+        {
+            return _repo.GetVaultsByProfileId(id);
+
         }
     }
 }

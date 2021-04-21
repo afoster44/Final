@@ -4,45 +4,45 @@
       Launch demo modal
     </button> -->
 
-    <div class="modal fade bd-example-modal-lg"
+    <div class="modal fade bd-example-modal-xl"
          id="keepModal"
          tabindex="-1"
          role="dialog"
          aria-labelledby="myLargeModalLabel"
          aria-hidden="true"
     >
-      <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content">
           <div class="container-fluid">
             <div class="row d-flex">
-              <div class="col-6 mt-2 mb-2">
+              <div class="col-md-6 mt-2 mb-2">
                 <img :src="state.keep.img" alt="">
               </div>
-              <div class="col-6">
+              <div class="col-md-6 col-sm-6">
                 <div class="row">
-                  <div class="col-8">
+                  <div class="col-md-8 col-sm-8">
                     <span><i class="fa fa-eye mr-1" aria-hidden="true">{{ state.keep.views }}</i></span>
                     <i class="fa fa-external-link ml-2 mr-2" aria-hidden="true"> {{ state.keep.keeps }}</i>
                     <i class="fa fa-share mr-2" aria-hidden="true"> {{ state.keep.shares }}</i>
                   </div>
-                  <div class="col-4 d-flex justify-content-end">
+                  <div class="col-md-4 col-sm-4 d-flex justify-content-end">
                     <span aria-hidden="true" class="mr-1" data-dismiss="modal">&times;</span>
                   </div>
                 </div>
                 <div class="row text-center mt-3 mb-1">
-                  <div class="col-10 offset-1">
+                  <div class="col-md-10 col-sm-10 offset-md-1 offset-sm-1">
                     <h1>
                       {{ state.keep.name }}
                     </h1>
                   </div>
                 </div>
-                <div class="row text-center mt-5">
-                  <div class="col-10 offset-1  border-bottom border-dark">
+                <div class="row text-center mt-1">
+                  <div class="col-md-10 col-sm-10 offset-md-1 offset-sm-1  border-bottom border-dark">
                     {{ state.keep.description }}
                   </div>
                 </div>
                 <div class="row bottom">
-                  <div class="col-3">
+                  <div class="col-md-3 col-sm-12">
                     <div class="dropdown">
                       <button class="btn btn-secondary dropdown-toggle"
                               type="button"
@@ -58,11 +58,11 @@
                       </div>
                     </div>
                   </div>
-                  <div class="col-1 offset-3 d-flex align-items-center justify-content-center">
+                  <div class="col-md-1 col-sm-12" v-if="state.keep.creatorId === state.account.id">
                     <i class="fa fa-trash" aria-hidden="true" @click="deleteKeep"></i>
                   </div>
-                  <div class="col-3" v-if="state.keep.creator">
-                    <i class="fa fa-user" aria-hidden="true"><span class="ml-1">{{ state.keep.creator.name }}</span></i>
+                  <div class="col-md-3 col-sm-12" v-if="state.keep.creator">
+                    <i class="fa fa-user" aria-hidden="true"><span class="">{{ state.keep.creator.name }}</span></i>
                   </div>
                 </div>
               </div>
@@ -85,7 +85,8 @@ export default {
   setup() {
     const state = reactive({
       keep: computed(() => AppState.activeKeep),
-      accountVaults: computed(() => AppState.accountVaults)
+      accountVaults: computed(() => AppState.accountVaults),
+      account: computed(() => AppState.account)
     })
     onMounted(() => {
     })
@@ -109,7 +110,9 @@ img {
   border-radius: 2%;
 }
 .bottom {
-  position: absolute;
-  bottom: 1%;
+    height: 5rem !important;
+    align-items: flex-end;
+    justify-content: center;
+    justify-content: space-evenly;
 }
 </style>

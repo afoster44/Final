@@ -41,25 +41,36 @@ USE finalkeepraf;
 --   ON DELETE CASCADE
 -- );
 
-CREATE TABLE vaultkeeps
-(
-    id INT NOT NULL AUTO_INCREMENT,
-    creatorId VARCHAR(255) NOT NULL,
-    vaultId INT NOT NULL,
-    keepId INT NOT NULL,
+-- CREATE TABLE vaultkeeps
+-- (
+--     id INT NOT NULL AUTO_INCREMENT,
+--     creatorId VARCHAR(255) NOT NULL,
+--     vaultId INT NOT NULL,
+--     keepId INT NOT NULL,
     
-    PRIMARY KEY (id),
+--     PRIMARY KEY (id),
 
-    FOREIGN KEY (creatorId)
-    REFERENCES profiles (id)
-    ON DELETE CASCADE,
+--     FOREIGN KEY (creatorId)
+--     REFERENCES profiles (id)
+--     ON DELETE CASCADE,
 
-    FOREIGN KEY (vaultId)
-    REFERENCES vaults (id)
-    ON DELETE CASCADE,
+--     FOREIGN KEY (vaultId)
+--     REFERENCES vaults (id)
+--     ON DELETE CASCADE,
 
-    FOREIGN KEY (keepId)
-    REFERENCES keeps (id)
-    ON DELETE CASCADE
-)
+--     FOREIGN KEY (keepId)
+--     REFERENCES keeps (id)
+--     ON DELETE CASCADE
+-- )
+
+
+
+-- if we are trying to drop the data from a table with foreign keys 
+-- we must set the foreign key check to 0 so it won't worry about it
+
+-- SET FOREIGN_KEY_CHECKS=0;
+-- TRUNCATE TABLE vaults;
+-- TRUNCATE TABLE keeps;
+-- TRUNCATE TABLE vaultkeeps;
+
 

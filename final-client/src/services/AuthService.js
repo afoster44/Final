@@ -18,10 +18,11 @@ export const AuthService = initialize({
   }
 })
 
-AuthService.on(AuthService.AUTH_EVENTS.AUTHENTICATED, async function () {
+AuthService.on(AuthService.AUTH_EVENTS.AUTHENTICATED, async () => {
   setBearer(AuthService.bearer)
   AppState.user = AuthService.user
   await accountService.getAccount()
   // NOTE if there is something you want to do once the user is authenticated, place that here
   await accountService.getVaultsByAccount()
+  await accountService.getKeepsByAccount()
 })

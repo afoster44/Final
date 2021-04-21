@@ -1,4 +1,5 @@
 import { AppState } from '../AppState'
+import { accountService } from './AccountService'
 import { api } from './AxiosService'
 import { profileService } from './ProfileService'
 
@@ -19,6 +20,7 @@ class KeepService {
     console.log(res)
     AppState.vaults = [res.data]
     await profileService.getKeepsByProfile(userId)
+    await accountService.getKeepsByAccount()
   }
 
   async deleteKeep(id) {
@@ -28,6 +30,7 @@ class KeepService {
     AppState.keeps.splice(foundKeep, 1)
     const profileKeep = AppState.profileKeeps.findIndex(pk => pk.id === id)
     AppState.profileKeeps.splice(profileKeep, 1)
+    await accountService.getKeepsByAccount()
   }
 }
 

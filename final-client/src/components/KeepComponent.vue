@@ -1,6 +1,6 @@
 <template>
-  <div class="keep-component">
-    <div class="card img-fluid">
+  <div class="keep-component card-container border-rounded">
+    <div class="card img-fluid" v-if="keep">
       <img class="card-img-top" :src="keep.img">
       <div class="card-img-overlay">
         <!-- <span aria-hidden="true" class="mr-1" data-dismiss="modal">&times;</span> -->

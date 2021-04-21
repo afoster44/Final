@@ -12,9 +12,10 @@ class AccountService {
     }
   }
 
-  async getKeeps() {
+  async getKeepsByAccount() {
     const res = await api.get('/account/keeps')
-    console.log(res)
+    console.log('got keeps by account', res)
+    AppState.accountKeeps = res.data
   }
 
   async getVaultsByAccount() {

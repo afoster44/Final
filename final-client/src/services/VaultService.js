@@ -1,4 +1,5 @@
 import { AppState } from '../AppState'
+import { accountService } from './AccountService'
 import { api } from './AxiosService'
 import { profileService } from './ProfileService'
 
@@ -21,12 +22,14 @@ class VaultService {
 
     // AppState.vaults = [res.data]
     await profileService.getVaultsByProfile(userId)
+    await accountService.getVaultsByAccount()
   }
 
   async deleteVault(vaultId, userId) {
     await api.delete('api/vaults/' + vaultId)
     // const res = await api.get('api/profiles/' + userId + '/vaults')
     await profileService.getVaultsByProfile(userId)
+    await accountService.getVaultsByAccount()
   }
 
   async getKeepsByVaultId(vaultId) {
