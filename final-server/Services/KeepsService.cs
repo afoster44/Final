@@ -62,17 +62,13 @@ namespace final_server.Services
             return "nice delete";
         }
 
-        internal IEnumerable<VaultKeepView> GetKeepsByVaultId(int id)
+        internal IEnumerable<VaultKeepView> GetKeepsByVaultId(int id, string userId)
         {
             Vault vault = _vrepo.GetById(id);
-            if (vault.IsPrivate == true)
+            if (vault.IsPrivate == true && vault.CreatorId != userId)
             {
-                throw new Exception("invalid id");
+                throw new Exception("This is private and you are not the creator");
             }
-            // else if (vault.IsPrivate == true && vault.CreatorId != userId)
-            // {
-            //     throw new Exception("This is private and you are not the creator");
-            // }
             return _repo.GetKeepsByVaultId(id);
 
         }

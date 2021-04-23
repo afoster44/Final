@@ -105,14 +105,9 @@ namespace final_server.Controllers
         {
             try
             {
-                // Profile userInfo = await HttpContext.GetUserInfoAsync<Profile>();
-                // if (userInfo == null)
-                // {
-                //     userInfo.Id = "No user";
-                //     //note figure it out
-                // }
-                // var userId = userInfo.Id;
-                return Ok(_kserv.GetKeepsByVaultId(id));
+                Profile userInfo = await HttpContext.GetUserInfoAsync<Profile>();
+                var userId = userInfo?.Id;
+                return Ok(_kserv.GetKeepsByVaultId(id, userId));
             }
             catch (System.Exception err)
             {
