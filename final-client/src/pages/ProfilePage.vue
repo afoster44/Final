@@ -1,5 +1,5 @@
 <template>
-  <div class="profile-page container-fluid bg-light">
+  <div class="profile-page container-fluid">
     <div class="row">
       <div class="col-md-2 col-sm-2 mt-2 img-fluid mr-3">
         <img :src="state.profile.picture" alt="">
@@ -11,10 +11,10 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-md-2 col-sm-2 mr-3">
+      <div class="col-md-2 col-sm-2">
         <h1>Vaults: </h1>
       </div>
-      <div class="col-md-8 col-sm-2 ml-4">
+      <div class="col-md-8 col-sm-2">
         <p><CreateVaultModal /></p>
       </div>
     </div>

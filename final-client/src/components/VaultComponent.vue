@@ -1,14 +1,14 @@
 <template>
   <div class="vault-component">
-    <div class="card">
+    <div class="card bg-primary">
       <div class="card-container">
         <div class="card-title">
           <div v-if="state.account">
-            <h3>{{ vault.name }} <span><i class="fa fa-trash" aria-hidden="true" @click="deleteVault" v-if="state.account.id === vault.creatorId"></i></span> </h3>
+            <h3>{{ vault.name }} <span><i class="fa fa-trash d-flex align-content-end" aria-hidden="true" @click="deleteVault" v-if="state.account.id === vault.creatorId"></i></span> </h3>
           </div>
         </div>
         <router-link :to="{name: 'VaultPage', params: {id: vault.id}}">
-          <div class="card-text">
+          <div class="card-text text-dark">
             {{ vault.description }}
           </div>
         </router-link>

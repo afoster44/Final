@@ -1,10 +1,10 @@
 <template>
-  <div class="keep-component card-container border-rounded">
+  <div class="keep-component card-container">
     <div class="card img-fluid" v-if="keep">
       <img class="card-img-top" :src="keep.img">
       <div class="card-img-overlay">
         <!-- <span aria-hidden="true" class="mr-1" data-dismiss="modal">&times;</span> -->
-        <p class="text-light" data-toggle="modal" data-target="#keepModal" @click="popKeepModal">
+        <p class="text-strong" data-toggle="modal" data-target="#keepModal" @click="popKeepModal">
           {{ keep.name }}
         </p>
         <router-link :to="{name: 'ProfilePage', params: {id: keep.creatorId}}">
@@ -38,7 +38,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 div{
   height: 100%
 }
@@ -50,5 +50,8 @@ i{
   position: absolute;
   bottom: 0;
   right: 0;
+}
+.card{
+  box-shadow: 2px 2px 2px #04202C;
 }
 </style>
