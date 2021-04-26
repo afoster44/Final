@@ -24,12 +24,7 @@
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
           <router-link :to="{ name: 'Home' }" class="nav-link">
-            Home
-          </router-link>
-        </li>
-        <li class="nav-item">
-          <router-link :to="{ name: 'About' }" class="nav-link">
-            About
+            <span class="text-danger">Home</span>
           </router-link>
         </li>
       </ul>
@@ -47,13 +42,13 @@
             class="dropdown-toggle"
             @click="state.dropOpen = !state.dropOpen"
           >
-            <img
+            <!-- <img
               :src="user.picture"
               alt="user photo"
               height="40"
               class="rounded"
-            />
-            <span class="mx-3">{{ user.name }}</span>
+            /> -->
+            <span class="mx-3 text-danger">{{ user.name }}</span>
           </div>
           <div
             class="dropdown-menu p-0 list-group w-100"

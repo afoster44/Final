@@ -3,10 +3,13 @@
     <div class="card img-fluid" v-if="keep">
       <img class="card-img-top" :src="keep.img">
       <div class="card-img-overlay">
+        <span>
+
+          <p class="text-strong" data-toggle="modal" data-target="#keepModal" @click="popKeepModal">
+            {{ keep.name }}
+          </p>
+        </span>
         <!-- <span aria-hidden="true" class="mr-1" data-dismiss="modal">&times;</span> -->
-        <p class="text-strong" data-toggle="modal" data-target="#keepModal" @click="popKeepModal">
-          {{ keep.name }}
-        </p>
         <router-link :to="{name: 'ProfilePage', params: {id: keep.creatorId}}">
           <i class="fa fa-user text-light mr-3 mb-3" aria-hidden="true"></i>
         </router-link>

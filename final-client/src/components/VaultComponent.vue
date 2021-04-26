@@ -1,6 +1,6 @@
 <template>
   <div class="vault-component">
-    <div class="card bg-primary">
+    <div class="card bg-dark">
       <div class="card-container">
         <div class="card-title">
           <div v-if="state.account">
@@ -8,7 +8,7 @@
           </div>
         </div>
         <router-link :to="{name: 'VaultPage', params: {id: vault.id}}">
-          <div class="card-text text-dark">
+          <div class="card-text text-danger">
             {{ vault.description }}
           </div>
         </router-link>

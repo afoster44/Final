@@ -1,6 +1,6 @@
 <template>
   <div class="create-vault-modal">
-    <i class="fa fa-plus btn btn-primary"
+    <i class="fa fa-plus btn btn-danger"
        aria-hidden="true"
        type="button"
        data-toggle="modal"

@@ -44,7 +44,7 @@
                 <div class="row bottom">
                   <div class="col-md-3 col-sm-12">
                     <div class="dropdown">
-                      <button class="btn btn-secondary dropdown-toggle"
+                      <button class="btn btn-danger dropdown-toggle"
                               type="button"
                               id="dropdownMenuButton"
                               data-toggle="dropdown"
